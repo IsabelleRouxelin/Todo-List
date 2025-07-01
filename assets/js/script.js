@@ -20,6 +20,7 @@ taskInput.addEventListener("keypress",function(e) {
 // array - store tasks 
 var tasks = []; 
 
+//add task function
 function addTask() {
     var text = taskInput.value.trim();
     
@@ -29,3 +30,11 @@ function addTask() {
     } else {
         // Add to array
     tasks.push(text);
+
+    // create list item 
+    // create task text
+    // create edit button 
+    // create delete button
+    // append elements
+// delete task function
+//edit task function
