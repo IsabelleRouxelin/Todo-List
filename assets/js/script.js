@@ -32,9 +32,30 @@ function addTask() {
     tasks.push(text);
 
     // create list item 
-    // create task text
+    var listEl = document.createElement("li");
+    // create task text - apparently needed to edit 
+    var taskText = document.createElement("span");
+    taskText.textContent = text;
     // create edit button 
+    var editBtn = document.createElement("button");
+    editBtn.textContent = "Edit";
+    editBtn.addEventListener("click", function() {
+        editTask(this) // refers to this instance of code
+    });
     // create delete button
+    var deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+    deleteBtn.addEventListener("click", function() {
+        deleteTask(this) // refers to this instance of code
+    });
     // append elements
+    listEl.appendChild(taskText);
+    listEl.appendChild(editBtn);
+    listEl.appendChild(deleteBtn);
+    todoList.appendChild(listItem);
+
+    taskInput.value = ""; // need to clear input
+    }
+}
 // delete task function
 //edit task function
