@@ -1,8 +1,4 @@
 //Todo List
-// Thing we need:
-/* arrays to store taks 
-event listeners to respond to clicks to create/remove tasks *maybe edit
-need to be able to add and delete tasks to start */
 
 // DOM elements 
 const taskInput = document.getElementById("taskInput");
@@ -69,16 +65,6 @@ function deleteTask(button) {
     listEl.remove(); //this is needed to remove task from the DOM
 }
 
-// adding delete button functionality
-deleteBtn.addEventListener("click", function(){
-    var listEl = this.closest("li");
-    var taskText = listEl.querySelector("span").textContent;
-
-    tasks = tasks.filter( task => task !== taskText )// to keep tasks that DO NOT match the deleted one
-
-    listEl.remove();
-});
-
 //edit task function
 function editTask(button) {
     var listEl = button.closest("li");
@@ -86,11 +72,29 @@ function editTask(button) {
     var currentText = taskText.textContent;
 
     var inputEl = document.createElement("input"); //creating input 
-    inputEl.type = text;
+    inputEl.type = "text";
     inputEl.value = currentText;
 
     taskText.replaceWith(inputEl); // replace with replaces tasktext with value of currentText i.e. inputEL
+        inputEl.focus();
+
+    // save edit function
+    var saveEdit = function() {
+        var newText = inputEl.value.trim();
+        if (newText !== "" && newText !== currentText) {
+            const taskIndex = tasks.indexOf(currentText);
+            if (taskIndex > -1) {
+                tasks[taskIndex] = newText;
+            }
+            taskText.textContent = newText; // Update DOM
+        }
+        inputEl.replaceWith(taskText);
+    };
     
-    
+    // adding save functionality
+    inputEl.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+            saveEdit();
+        }
+    });
 }
-//edit task button functionality
