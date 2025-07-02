@@ -17,6 +17,7 @@ taskInput.addEventListener("keypress",function(e) {
     }
 });
 
+
 // array - store tasks 
 var tasks = []; 
 
@@ -52,10 +53,29 @@ function addTask() {
     listEl.appendChild(taskText);
     listEl.appendChild(editBtn);
     listEl.appendChild(deleteBtn);
-    todoList.appendChild(listItem);
+    todoList.appendChild(listEl);
 
     taskInput.value = ""; // need to clear input
     }
 }
 // delete task function
+function deleteTask(button) {
+    var listEl= button.closest("li");
+    var taskText = listEl.querySelector("span").textContent
+    var taskIndex = tasks.indexOf(taskText);
+    if (taskIndex > -1) {
+        tasks.splice (taskIndex, 1);
+    }
+    listEl.remove(); //this is needed to remove task from the DOM
+}
+
+// adding delete button
+deleteBtn.addEventListener("click", function(){
+    var listEl = this.closest("li");
+    var taskText = listEl.querySelector("span").textContent;
+
+    tasks = tasks.filter( task => task !== taskText )// to keep tasks that DO NOT match the deleted one
+
+    listEl.remove();
+});
 //edit task function
