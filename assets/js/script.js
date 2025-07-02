@@ -69,7 +69,7 @@ function deleteTask(button) {
     listEl.remove(); //this is needed to remove task from the DOM
 }
 
-// adding delete button
+// adding delete button functionality
 deleteBtn.addEventListener("click", function(){
     var listEl = this.closest("li");
     var taskText = listEl.querySelector("span").textContent;
@@ -78,4 +78,19 @@ deleteBtn.addEventListener("click", function(){
 
     listEl.remove();
 });
+
 //edit task function
+function editTask(button) {
+    var listEl = button.closest("li");
+    var taskText = listEl.querySelector("span");
+    var currentText = taskText.textContent;
+
+    var inputEl = document.createElement("input"); //creating input 
+    inputEl.type = text;
+    inputEl.value = currentText;
+
+    taskText.replaceWith(inputEl); // replace with replaces tasktext with value of currentText i.e. inputEL
+    
+    
+}
+//edit task button functionality
