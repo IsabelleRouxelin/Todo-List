@@ -1,6 +1,8 @@
 # Basic Todo List
 A clean, interactive todo list built with HTML, CSS, and JavaScript that allows you to:
 - Add new tasks
+- Edit tasks
+- Delete tasks
 
 
 ## Features
