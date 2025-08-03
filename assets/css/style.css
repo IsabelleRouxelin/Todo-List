@@ -1,54 +1,308 @@
-body,
-html {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
-    background-color: #f4f6f9;
+    box-sizing: border-box;
 }
 
+body,
+html {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #2d3748;
+    line-height: 1.6;
+}
+
+/* Container and layout */
 .container {
     display: flex;
-    height: 100vh;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 2rem 1rem;
 }
-
 
 .main-content {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
+    width: 100%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.main-content h1 {
-    margin-bottom: 20px;
+/* Title styling */
+#page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a202c;
+    text-align: center;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
+/* Widget styling */
 .widget {
-    background-color: white;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    background: #ffffff;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
 }
 
+.widget:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.widget h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.widget h2::before {
+    content: "📝";
+    font-size: 1.2rem;
+}
+
+/* Input field styling */
+input[type="text"] {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 400;
+    background: #f8fafc;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #667eea;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    transform: translateY(-1px);
+}
+
+input[type="text"]::placeholder {
+    color: #a0aec0;
+    font-weight: 400;
+}
+
+/* Button styling */
 button {
-    padding: 10px 20px;
-    background-color: #64778a;
+    padding: 0.875rem 1.5rem;
+    background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
-    margin-left: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-transform: capitalize;
+    letter-spacing: 0.025em;
 }
 
 button:hover {
-    background-color: #316bb7;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    background: linear-gradient(135deg, #5a67d8, #6b46c1);
 }
 
-input[type="text"] {
-    padding: 9px;
-    width: 20%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
+button:active {
+    transform: translateY(0);
 }
 
+#addBtn {
+    width: 100%;
+    justify-content: center;
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+#addBtn::before {
+    content: "➕";
+    margin-right: 0.5rem;
+}
+
+/* Task list styling */
+#todoList {
+    list-style: none;
+    space-y: 0.75rem;
+}
+
+#todoList li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 0.75rem;
+    transition: all 0.3s ease;
+    animation: slideIn 0.3s ease-out;
+}
+
+#todoList li:hover {
+    background: #ffffff;
+    border-color: #cbd5e0;
+    transform: translateX(4px);
+}
+
+#todoList li span {
+    flex: 1;
+    font-weight: 500;
+    color: #2d3748;
+    word-break: break-word;
+}
+
+#todoList li button {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.85rem;
+    margin: 0;
+    min-width: auto;
+}
+
+#todoList li button:first-of-type {
+    background: linear-gradient(135deg, #4299e1, #3182ce);
+}
+
+#todoList li button:first-of-type:hover {
+    background: linear-gradient(135deg, #3182ce, #2c5282);
+}
+
+#todoList li button:last-of-type {
+    background: linear-gradient(135deg, #f56565, #e53e3e);
+}
+
+#todoList li button:last-of-type:hover {
+    background: linear-gradient(135deg, #e53e3e, #c53030);
+}
+
+/* Input field inside list items */
+#todoList li input[type="text"] {
+    margin-bottom: 0;
+    border-color: #4299e1;
+    background: #ffffff;
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+    color: #a0aec0;
+    font-style: italic;
+}
+
+.empty-state::before {
+    content: "🌟";
+    display: block;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .main-content {
+        padding: 1.5rem;
+        border-radius: 15px;
+    }
+
+    #page-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .widget {
+        padding: 1rem;
+    }
+
+    #todoList li {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    #todoList li span {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    #todoList li button {
+        flex: 1;
+        min-width: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    #page-title {
+        font-size: 1.75rem;
+    }
+
+    .main-content {
+        padding: 1rem;
+    }
+
+    .widget {
+        padding: 0.75rem;
+    }
+}
+
+/* Focus visible for accessibility */
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
